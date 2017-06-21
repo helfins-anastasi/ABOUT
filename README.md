@@ -5,7 +5,6 @@ Struggling to get things done? Want to learn a new skill but having trouble with
 
 ## Setup Instructions (on MacOS)
 * Install python 3.6 (`brew install python3`)
-* Install heroku (`brew install heroku`)
 * Install postgres (`brew install postgres`)
 * Download django (`sudo -H pip3 install django`)
 * download psycopg2 (`sudo -H pip3 install psycopg2`)
