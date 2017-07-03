@@ -15,10 +15,11 @@ class User(models.Model):
 class Item(models.Model):
     user = models.ForeignKey(User)
     priority = models.PositiveSmallIntegerField()
-    description = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
 
     def __str__(self):
-        return '%s (%s #%d)' % (self.description, self.user, self.priority)
+        return '%s (%s #%d)' % (self.title, self.user, self.priority)
 
 
 class Restriction(models.Model):
