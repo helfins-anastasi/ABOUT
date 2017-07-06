@@ -13,6 +13,7 @@ def todo_list(request, username):
 
     return render(request, 'todo_list.html', {"items": items, "user": user})
 
+
 def detail(request, username, pk):
     user = User.objects.get(name=username)
     todo_item = Item.objects.filter(user=user).filter(pk=pk).first
@@ -20,3 +21,7 @@ def detail(request, username, pk):
         return render(request, 'detail.html', {"todo_item": todo_item, "user": user})
     else:
         return HttpResponse("Not Found")
+
+
+def login(request):
+    return render(request, 'login.html', {"request": request, "user": request.user})

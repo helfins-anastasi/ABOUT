@@ -22,7 +22,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: change this before deploying to production!
-SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
+with open(".keys/django.txt") as f:
+    SECRET_KEY = f.read()[:-1]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
+    'social_core.backends',
     'hello',
     'todo'
 )
@@ -66,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -101,6 +106,26 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_REDIRECT_URL = '/'
+
+with open(".keys/facebook.txt") as f:
+    SOCIAL_AUTH_FACEBOOK_KEY = f.read()[:-1]
+
+with open(".keys/secrets/facebook.txt") as f:
+    SOCIAL_AUTH_FACEBOOK_SECRET = f.read()[:-1]
+
+with open(".keys/google.txt") as f:
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = f.read()[:-1]
+
+with open(".keys/secrets/google.txt") as f:
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f.read()[:-1]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

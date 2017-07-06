@@ -1,14 +1,18 @@
 from django.conf.urls import include, url
-
 from django.contrib import admin
-admin.autodiscover()
-
 import hello.views
 import todo.views
+import todo.urls
+import social_django.urls
+import django.contrib.auth.urls
+
+admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
+    url(r'^login$', todo.views.login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^list/(?P<username>[a-zA-Z0-9_-]+)$', todo.views.todo_list, name="todo"),
-    url(r'^list/(?P<username>[a-zA-Z0-9_-]+)/(?P<pk>[0-9]+)$', todo.views.detail, name="todo_detail")
+    url(r'^list/', include(todo.urls)),
+    url('', include(social_django.urls, namespace="social")),
+    url('', include(django.contrib.auth.urls, namespace='auth')),
 ]

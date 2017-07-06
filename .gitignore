@@ -4,6 +4,9 @@
 # Apple hidden files
 .DS_Store
 
+# API keys and secrets
+.keys/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
