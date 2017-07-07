@@ -21,10 +21,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: change this before deploying to production!
-with open(".keys/django.txt") as f:
-    SECRET_KEY = f.read()[:-1]
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -114,18 +110,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_REDIRECT_URL = '/'
-
-with open(".keys/facebook.txt") as f:
-    SOCIAL_AUTH_FACEBOOK_KEY = f.read()[:-1]
-
-with open(".keys/secrets/facebook.txt") as f:
-    SOCIAL_AUTH_FACEBOOK_SECRET = f.read()[:-1]
-
-with open(".keys/google.txt") as f:
-    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = f.read()[:-1]
-
-with open(".keys/secrets/google.txt") as f:
-    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f.read()[:-1]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
