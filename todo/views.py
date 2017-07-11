@@ -13,9 +13,8 @@ logger = getLogger(__name__)
 # Renders suggestion page
 def suggest(request):
     user = request.user
-    suggestion = Item.objects.filter(user=user).order_by('priority')[0]
+    suggestion = Item.objects.filter(user=user).order_by('priority').first
     duration = "30 minutes"
-    suggestion.url = get_url(suggestion)
 
     return render(request, 'suggest.html', {"suggestion": suggestion, "duration": duration, "user": user})
 
@@ -36,14 +35,21 @@ def todo_list(request):
     return render(request, 'todo_list.html', {"items": items, "user": user})
 
 
-# Renders detailed view for a specific item (with identifier pk)
-def detail(request, pk):
-    user = request.user
-    todo_item = Item.objects.filter(user=user).filter(pk=pk).first
-    if todo_item:
-        return render(request, 'detail.html', {"todo_item": todo_item, "user": user})
+def detail(request, item):
+    if item:
+        return render(request, 'detail.html', {"todo_item": item, "user": request.user})
     else:
         return HttpResponse("Not Found")
+
+# Renders detailed view for a specific item (with identifier pk)
+def detail_by_pk(request, pk):
+    user = request.user
+    todo_item = Item.objects.filter(user=user).filter(pk=pk).first
+    return detail(request, todo_item)
+
+def detail_by_priority(request, priority):
+    item = Item.objects.filter(user=request.user, priority=priority).first
+    return detail(request, item)
 
 
 # Renders login page

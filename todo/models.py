@@ -5,7 +5,6 @@ from django.db import models
 from social_django.models import USER_MODEL
 
 
-
 class Item(models.Model):
     user = models.ForeignKey(USER_MODEL)
     priority = models.PositiveSmallIntegerField()
@@ -16,7 +15,7 @@ class Item(models.Model):
         return '%s (%s #%d)' % (self.title, self.user, self.priority)
 
     def url(self):
-        return str(self.pk)
+        return "id=%s" % str(self.pk)
 
 
 class Restriction(models.Model):
