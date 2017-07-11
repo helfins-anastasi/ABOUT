@@ -15,7 +15,7 @@ class Item(models.Model):
         return '%s (%s #%d)' % (self.title, self.user, self.priority)
 
     def url(self):
-        return "id=%s" % str(self.pk)
+        return "item/id=%s" % str(self.pk)
 
 
 class Restriction(models.Model):

@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'social_django',
     'social_core.backends',
-    'hello',
     'todo'
 )
 
