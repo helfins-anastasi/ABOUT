@@ -2,17 +2,21 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from social_django.models import UserSocialAuth
+from social_django.models import USER_MODEL
+
 
 
 class Item(models.Model):
-    user = models.ForeignKey(UserSocialAuth)
+    user = models.ForeignKey(USER_MODEL)
     priority = models.PositiveSmallIntegerField()
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
 
     def __str__(self):
         return '%s (%s #%d)' % (self.title, self.user, self.priority)
+
+    def url(self):
+        return str(self.pk)
 
 
 class Restriction(models.Model):

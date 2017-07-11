@@ -2,10 +2,10 @@
 {% load staticfiles %}
 
 {% block content %}
-<h2>Welcome to your To-do List, {{ user.name }}!</h2>
+<h2>Welcome to your To-do List, {{ user.get_full_name|default:user.username }}!</h2>
 <ol>
 {% for item in items %}
-    <li><a href="{{ user.name }}/{{ item.pk }}">{{ item.title }}</a></li>
+    <li><a href="{{ item.url }}">{{ item.title }}</a></li>
 {% endfor %}
 </ol>
 {% endblock %}
