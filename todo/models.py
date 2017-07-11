@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from social_django.models import UserSocialAuth
 
 
 # Create your models here.
@@ -13,7 +14,7 @@ class User(models.Model):
 
 
 class Item(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(UserSocialAuth)
     priority = models.PositiveSmallIntegerField()
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)

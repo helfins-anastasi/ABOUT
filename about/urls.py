@@ -10,6 +10,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
+    url(r'^secret-login-form/$', todo.views.user_login, name='secret_login'),
     url(r'^login$', todo.views.login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^list/', include(todo.urls)),

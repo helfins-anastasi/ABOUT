@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if request.user %}
+    <form action="/complete/username">
+      User name:<br>
+      <input type="text" name="username"><br>
+      <input type="submit" value="Login!">
+    </form>
+  {% else %}
+    <h1>You're logged in, {{ request.user.username }}!</h1>
+  {% endif %}
+{% endblock %}
